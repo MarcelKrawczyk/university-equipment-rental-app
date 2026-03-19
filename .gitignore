@@ -4,31 +4,25 @@ obj/
 out/
 artifacts/
 
+# Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.rsuser
+
+# VS Code
+.vscode/
+
 # NuGet
 *.nupkg
 *.snupkg
 packages/
 *.nuget.props
 *.nuget.targets
-
-# User-specific files
-*.user
-*.userosscache
-*.suo
-*.sln.docstates
-
-# Visual Studio
-.vs/
-*.vcxproj.user
-*.rsuser
-
-# Rider / IntelliJ
-.idea/
-*.sln.iml
-
-# VS Code
-.vscode/
-.history/
 
 # Logs
 *.log
@@ -41,7 +35,7 @@ packages/
 *.DS_Store
 Thumbs.db
 
-# Resharper
+# ReSharper
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
@@ -52,7 +46,7 @@ _ReSharper*/
 # Entity Framework Core
 Migrations/obj/
 
-# ASP.NET
+# ASP.NET static libs
 wwwroot/lib/
 wwwroot/node_modules/
 
