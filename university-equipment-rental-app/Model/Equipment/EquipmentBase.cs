@@ -6,7 +6,7 @@ public abstract class EquipmentBase
 {
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; set; }
-    public EquipmentStatus Status { get; set; } =  EquipmentStatus.Avilable;
+    public EquipmentStatus Status { get; set; } =  EquipmentStatus.Available;
     protected EquipmentBase(string name)
     {
         Name = name;

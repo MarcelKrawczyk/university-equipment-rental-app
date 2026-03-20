@@ -1,18 +1,26 @@
 using university_equipment_rental_app.Enums;
-using university_equipment_rental_app.Model;
 using university_equipment_rental_app.Rules;
 
 namespace university_equipment_rental_app.Service;
 
 public class RentalService
 {
-    public void ReturnLoanedItem(Loan loan)
+    public void Return(Loan loan)
     {
-        loan.ActualReturnDate = DateOnly.FromDateTime(DateTime.Today);
+        if (loan.IsReturned)
+        {
+            Console.WriteLine("This equipment has already been returned.");
+            return;
+        }
+        loan.ReturnedAt = DateOnly.FromDateTime(DateTime.Today);
         if (loan.IsOverdue)
         {
-            loan.Penalty = RentalRules.CalculatePenalty(loan);
+            Console.WriteLine($"Equipment Returned. Penalty: {RentalRules.CalculatePenalty(loan)} USD.");
         }
-        loan.RentedEquipment.Status = EquipmentStatus.Avilable;
+        else
+        {
+            Console.WriteLine("Returned in time.");
+        }
+        loan.RentedEquipment.Status = EquipmentStatus.Available;
     }
 }

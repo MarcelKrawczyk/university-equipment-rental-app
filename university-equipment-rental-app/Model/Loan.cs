@@ -1,26 +1,31 @@
-using university_equipment_rental_app.Model.Users;
 using university_equipment_rental_app.Model.Equipment;
-
-namespace university_equipment_rental_app.Model;
+using university_equipment_rental_app.Model.Users;
 
 public class Loan
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public DateOnly LoanDate { get; set; }
-    public DateOnly ReturnDate => LoanDate.AddDays(7);
-    public DateOnly? ActualReturnDate { get; set; }
-    public EquipmentBase RentedEquipment { get; set; }
-    public User Renter { get; set; }
-    public bool IsReturned => ActualReturnDate.HasValue;
+    public User User { get; }
+    public EquipmentBase RentedEquipment { get; }
+    public DateOnly RentedAt { get; }
+    public DateOnly DueDate { get; }
+    public DateOnly? ReturnedAt { get; set; }
+    public bool IsReturned => ReturnedAt.HasValue;
     public bool IsOverdue => DaysOverdue > 0;
-    public int Penalty { get; set; }
     
+    public Loan(User user, EquipmentBase equipment, DateOnly rentedAt, DateOnly dueDate)
+    {
+        User = user;
+        RentedEquipment = equipment;
+        RentedAt = rentedAt;
+        DueDate = dueDate;
+    }
+
     public int DaysOverdue
     {
         get
         {
-            var compareDate = ActualReturnDate ?? DateOnly.FromDateTime(DateTime.Today);
-            return Math.Max(0, compareDate.DayNumber - ReturnDate.DayNumber);
+            var compareDate = ReturnedAt ?? DateOnly.FromDateTime(DateTime.Today);
+            return Math.Max(0, compareDate.DayNumber - DueDate.DayNumber);
         }
     }
 }
