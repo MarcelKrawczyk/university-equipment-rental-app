@@ -1,3 +1,4 @@
+using university_equipment_rental_app.Enums;
 using university_equipment_rental_app.Model;
 using university_equipment_rental_app.Rules;
 
@@ -8,7 +9,10 @@ public class RentalService
     public void ReturnLoanedItem(Loan loan)
     {
         loan.ActualReturnDate = DateOnly.FromDateTime(DateTime.Today);
-        loan.Penalty = RentalRules.CalculatePenalty(loan);
-        loan.RentedEquipment.IsAvailable = true;
+        if (loan.IsOverdue)
+        {
+            loan.Penalty = RentalRules.CalculatePenalty(loan);
+        }
+        loan.RentedEquipment.Status = EquipmentStatus.Avilable;
     }
 }

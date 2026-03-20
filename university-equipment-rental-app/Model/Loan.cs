@@ -13,7 +13,7 @@ public class Loan
     public User Renter { get; set; }
     public bool IsReturned => ActualReturnDate.HasValue;
     public bool IsOverdue => DaysOverdue > 0;
-    public decimal Penalty { get; set; }
+    public int Penalty { get; set; }
     
     public int DaysOverdue
     {
