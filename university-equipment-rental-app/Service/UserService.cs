@@ -18,4 +18,11 @@ public class UserService
         _users.Add(employee);
         return employee;
     }
+    public void PrintAll()
+    {
+        foreach (var i in _users)
+        {
+            Console.WriteLine($"{i.FirstName} - {i.LastName} - {i.Id}");
+        }
+    }
 }

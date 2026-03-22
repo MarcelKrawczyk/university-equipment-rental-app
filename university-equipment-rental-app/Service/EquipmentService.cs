@@ -25,4 +25,12 @@ public class EquipmentService
         _equipment.Add(camera);
         return camera;
     }
+    
+    public void PrintAll()
+    {
+        foreach (var i in _equipment)
+        {
+            Console.WriteLine($"{i.Name} - {i.GetTypeName()} - {i.Status}");
+        }
+    }
 }
