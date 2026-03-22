@@ -1,3 +1,4 @@
+using university_equipment_rental_app.Enums;
 using university_equipment_rental_app.Model.Equipment;
 
 namespace university_equipment_rental_app.Service;
@@ -26,11 +27,18 @@ public class EquipmentService
         return camera;
     }
     
-    public void PrintAll()
+    public IReadOnlyList<EquipmentBase> GetAll()
     {
-        foreach (var i in _equipment)
-        {
-            Console.WriteLine($"{i.Name} - {i.GetTypeName()} - {i.Status}");
-        }
+        return _equipment.AsReadOnly();
+    }
+
+    public IReadOnlyList<EquipmentBase> GetAvailable()
+    {
+        return _equipment.Where(e => e.Status == EquipmentStatus.Available).ToList().AsReadOnly();
+    }
+
+    public void SetAsUnavailable(EquipmentBase equipmentBase)
+    {
+        equipmentBase.Status = EquipmentStatus.Unavailable;
     }
 }
