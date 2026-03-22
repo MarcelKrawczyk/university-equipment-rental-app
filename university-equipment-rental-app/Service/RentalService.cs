@@ -38,4 +38,12 @@ public class RentalService
         _rentals.Add(loan);
         return $"Loaned '{equipment.Name}'. Return date: {DateOnly.FromDateTime(DateTime.Today).AddDays(dueDate)}.";
     }
+    public IReadOnlyList<Loan> GetActiveLoansForUser(User user)
+    {
+        return _rentals.Where(l => l.User.Id == user.Id && !l.IsReturned).ToList().AsReadOnly();
+    }
+    public IReadOnlyList<Loan> GetOverdueLoans()
+    {
+        return _rentals.Where(l => l.IsOverdue && !l.IsReturned).ToList().AsReadOnly();
+    }
 }
