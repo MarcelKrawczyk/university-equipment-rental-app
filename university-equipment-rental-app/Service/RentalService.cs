@@ -8,23 +8,20 @@ namespace university_equipment_rental_app.Service;
 public class RentalService
 {
     private readonly List<Loan> _rentals = new();
-    public void Return(Loan loan)
+    public string Return(Loan loan)
     {
         if (loan.IsReturned)
-        {
-            Console.WriteLine("This equipment has already been returned.");
-            return;
-        }
+            return "This equipment has already been returned.";
+
         loan.ReturnedAt = DateOnly.FromDateTime(DateTime.Today);
-        if (loan.IsOverdue)
-        {
-            Console.WriteLine($"Equipment Returned. Penalty: {RentalRules.CalculatePenalty(loan)} USD.");
-        }
-        else
-        {
-            Console.WriteLine("Returned in time.");
-        }
         loan.RentedEquipment.Status = EquipmentStatus.Available;
+
+        int penalty = RentalRules.CalculatePenalty(loan);
+        if (penalty > 0)
+        {
+            return $"Equipment returned. Penalty: {penalty} USD.";
+        }
+        return "Equipment returned in time. No penalty.";
     }
     
     public string Rent(User user, EquipmentBase equipment, int dueDate)
