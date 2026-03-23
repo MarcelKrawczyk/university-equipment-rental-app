@@ -1,5 +1,3 @@
-using university_equipment_rental_app.Model;
-
 namespace university_equipment_rental_app.Rules;
 
 public static class RentalRules
