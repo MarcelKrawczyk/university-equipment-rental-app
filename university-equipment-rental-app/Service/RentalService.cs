@@ -46,4 +46,8 @@ public class RentalService
     {
         return _rentals.Where(l => l.IsOverdue && !l.IsReturned).ToList().AsReadOnly();
     }
+    public IReadOnlyList<Loan> GetAll()
+    {
+        return _rentals.AsReadOnly();
+    }
 }

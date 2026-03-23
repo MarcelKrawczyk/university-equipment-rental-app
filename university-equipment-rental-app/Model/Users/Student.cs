@@ -3,11 +3,11 @@ namespace university_equipment_rental_app.Model.Users;
 public class Student : User
 {
     public override int MaxActiveRentals => 2;
-    public string StudnetId { get; set; }
+    public string StudentId { get; set; }
 
-    public Student(string firstName, string lastName, string studnetId) : base(firstName, lastName)
+    public Student(string firstName, string lastName, string studentId) : base(firstName, lastName)
     {
-        StudnetId = studnetId;
+        StudentId = studentId;
     }
     public override string GetUserType()
     {

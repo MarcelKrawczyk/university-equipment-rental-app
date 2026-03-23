@@ -1,3 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using university_equipment_rental_app.Service;
+using university_equipment_rental_app.UI;
 
-Console.WriteLine("Hello, World!");
+var menu = new ConsoleMenu(
+    new EquipmentService(),
+    new UserService(),
+    new RentalService(),
+    new ReportService()
+);
+
+menu.Run();

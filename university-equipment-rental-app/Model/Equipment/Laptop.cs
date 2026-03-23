@@ -2,8 +2,8 @@ namespace university_equipment_rental_app.Model.Equipment;
 
 public class Laptop : EquipmentBase
 {
-    public string Procesor;
-    public int RamGb;
+    public string Procesor { get; set; }
+    public int RamGb { get; set; }
 
     public Laptop(string name, string proc, int ramgb) : base(name)
     {
