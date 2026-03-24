@@ -43,16 +43,27 @@ public class ConsoleMenu
 
             switch (choice)
             {
-                case "1":  AddEquipment();        break;
-                case "2":  AddUser();             break;
-                case "3":  ShowAllEquipment();    break;
-                case "4":  ShowAvailableEquipment(); break;
-                case "5":  RentEquipment();       break;
-                case "6":  ReturnEquipment();     break;
-                case "7":  MarkUnavailable();     break;
-                case "8":  ShowActiveLoansForUser(); break;
-                case "9":  ShowOverdueLoans();    break;
-                case "10": GenerateReport();      break;
+                case "1":
+                    AddEquipment();
+                    break;
+                case "2":  AddUser();
+                    break;
+                case "3":  ShowAllEquipment();
+                    break;
+                case "4":  ShowAvailableEquipment();
+                    break;
+                case "5":  RentEquipment();
+                    break;
+                case "6":  ReturnEquipment();
+                    break;
+                case "7":  MarkUnavailable();
+                    break;
+                case "8":  ShowActiveLoansForUser();
+                    break;
+                case "9":  ShowOverdueLoans();
+                    break;
+                case "10": GenerateReport();
+                    break;
                 case "0":
                     Console.WriteLine("Goodbye!");
                     return;
@@ -63,7 +74,7 @@ public class ConsoleMenu
         }
     }
 
-    // --- EQUIPMENT -------------------------------------------------------
+    // EQUIPMENT -------------------------------------------------------
 
     private void AddEquipment()
     {
@@ -156,9 +167,7 @@ public class ConsoleMenu
 
     private void MarkUnavailable()
     {
-        var all = _equipmentService.GetAll()
-            .Where(e => e.Status != EquipmentStatus.Unavailable)
-            .ToList();
+        var all = _equipmentService.GetAll().Where(e => e.Status != EquipmentStatus.Unavailable).ToList();
 
         if (!all.Any())
         {
@@ -180,7 +189,7 @@ public class ConsoleMenu
         Console.WriteLine($"'{all[index].Name}' marked as unavailable.");
     }
 
-    // --- USERS -------------------------------------------------------
+    // USERS -------------------------------------------------------
 
     private void AddUser()
     {
@@ -220,9 +229,7 @@ public class ConsoleMenu
         Console.Write("Enter last name to search: ");
         var lastName = Console.ReadLine()?.Trim();
 
-        var found = _userService.GetAll()
-            .Where(u => u.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase))
-            .ToList();
+        var found = _userService.GetAll().Where(u => u.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase)).ToList();
 
         if (!found.Any())
         {
@@ -243,7 +250,7 @@ public class ConsoleMenu
         return found[index];
     }
 
-    // --- RENTALS -------------------------------------------------------
+    // RENTALS -------------------------------------------------------
 
     private void RentEquipment()
     {
