@@ -10,7 +10,7 @@ Made for APBD – Exercise 2 @ PJATK.
 You need .NET 9 SDK installed.
 
 ```bash
-git clone https://github.com/<your-username>/university-equipment-rental-app
+git clone https://github.com/MarcelKrawczyk/university-equipment-rental-app
 cd university-equipment-rental-app
 dotnet run
 ```
